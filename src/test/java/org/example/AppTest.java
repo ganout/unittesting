@@ -20,22 +20,27 @@ public class AppTest
     }
 
     @Test
-    public void noRepeat() {
-        assertEquals("aei", StringUtils.vowels("aaaeeeiii"));
-        assertEquals("aei", StringUtils.vowels("aeiaeiaei"));
-        assertEquals("aei", StringUtils.vowels("aeeiai"));
+    public void testVowels() {
+        assertEquals("aeiouyAEIOUY", StringUtils.vowels("aeiouyAEIOUY"));
+        assertEquals("oa", StringUtils.vowels("Morgan"));
     }
 
     @Test
-    public void noRepeatIgnoreCase() {
-        assertEquals("aei", StringUtils.vowels("aAeEiI"));
-        assertEquals("aei", StringUtils.vowels("aeiAEIAEI"));
-        assertEquals("aei", StringUtils.vowels("aeEiAI"));
-        assertEquals("aeiouy", StringUtils.vowels("aeiouyAEIOUY"));
+    public void noRepeat() {
+        assertEquals("aei", StringUtils.uniqueVowels("aaaeeeiii"));
+        assertEquals("aei", StringUtils.uniqueVowels("aeiaeiaei"));
+        assertEquals("aei", StringUtils.uniqueVowels("aeeiai"));
     }
 
     @Test
     public void noVowels() {
         assertEquals("", StringUtils.vowels("zrtpmk"));
+        assertEquals("", StringUtils.uniqueVowels("zrtpmk"));
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testNull() {
+        StringUtils.vowels(null);
+        StringUtils.uniqueVowels(null);
     }
 }

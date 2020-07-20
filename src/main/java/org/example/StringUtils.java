@@ -1,6 +1,7 @@
 package org.example;
 
 public class StringUtils {
+
     private static final String ALL_VOWELS = "aeiouyAEIOUY";
 
     /**
@@ -8,11 +9,29 @@ public class StringUtils {
      * @return Chaine avec uniquement des voyelles
      */
     public static String vowels(String candidate) {
+        if (candidate == null) {
+            throw new IllegalArgumentException("null is not allowed");
+        }
         String vowels = "";
         char[] letters = candidate.toCharArray();
-        for (int i = 0; i < letters.length; i++) {
+        for (int i = 0; i < candidate.length(); i++) {
             if (ALL_VOWELS.indexOf(letters[i]) >= 0) {
-                if (!vowels.contains(Character.toString(letters[i]).toLowerCase())) {
+                vowels += letters[i];
+            }
+        }
+        return vowels;
+    }
+
+    public static String uniqueVowels(String sentence) {
+
+        if (sentence == null) {
+            throw new IllegalArgumentException("null is not allowed");
+        }
+        String vowels = "";
+        char[] letters = sentence.toCharArray();
+        for (int i = 0; i < sentence.length(); i++) {
+            if (ALL_VOWELS.indexOf(letters[i]) >= 0) {
+                if (!vowels.contains(String.valueOf(letters[i]))){
                     vowels += letters[i];
                 }
             }
